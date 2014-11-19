@@ -1,0 +1,34 @@
+int servopin=9;//定義數字接口9 連接伺服舵機信號線
+int myangle;//定義角度變量
+int pulsewidth;//定義脈寬變量
+int val;
+void servopulse(int servopin,int myangle)//定義一個脈衝函數
+{
+pulsewidth=(myangle*11)+500;//將角度轉化為500-2480 的脈寬值
+digitalWrite(servopin,HIGH);//將舵機接口電平至高
+delayMicroseconds(pulsewidth);//延時脈寬值的微秒數
+digitalWrite(servopin,LOW);//將舵機接口電平至低
+delay(20-pulsewidth/1000);
+}
+void setup()
+{
+pinMode(servopin,OUTPUT);//設定舵機接口為輸出接口
+Serial.begin(9600);//連接到串行端口，波特率為9600
+Serial.println("servo=o_seral_simple ready" ) ;
+}
+void loop()//將0 到9 的數轉化為0 到180 角度，並讓LED 閃爍相應數的次數
+{
+val=Serial.read();//讀取串行端口的值
+if(val>'0'&&val<='9')
+{
+val=val-'0';//將特徵量轉化為數值變量
+val=val*(180/9);//將數字轉化為角度
+Serial.print("moving servo to ");
+Serial.print(val,DEC);
+Serial.println();
+for(int i=0;i<=50;i++) //給予舵機足夠的時間讓它轉到指定角度
+{
+servopulse(servopin,val);//引用脈衝函數
+}
+}
+}

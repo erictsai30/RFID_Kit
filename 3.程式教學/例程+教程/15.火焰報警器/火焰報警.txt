@@ -1,0 +1,22 @@
+int flame=0;//定義火焰接口為模擬0 接口
+ int Beep=9;//定義蜂鳴器接口為數字9 接口
+ int val=0;//定義數字變量
+ void setup() 
+{
+  pinMode(Beep,OUTPUT);//定義LED 為輸出接口
+ pinMode(flame,INPUT);//定義蜂鳴器為輸入接口
+ Serial.begin(9600);//設定波特率為9600 
+ } 
+void loop() 
+{ 
+  val=analogRead(flame);//讀取火焰傳感器的模擬值 
+  Serial.println(val);//輸出模擬值，並將其打印出來
+  if(val>=600)//當模擬值大於600 時蜂鳴器鳴響
+  {  
+   digitalWrite(Beep,HIGH); 
+   }else 
+   {  
+     digitalWrite(Beep,LOW); 
+    }
+   delay(500); 
+}

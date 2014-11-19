@@ -1,0 +1,12 @@
+int RelayPin =8; //定義數字接口8 連接三極管基極
+void setup()
+{
+pinMode(RelayPin, OUTPUT); //定義RelayPin 接口為輸出接口
+}
+void loop()
+{
+digitalWrite(RelayPin, HIGH); //驅動繼電器閉合導通
+delay(1000); //延時1 秒鐘
+digitalWrite(RelayPin, LOW); //驅動繼電器斷開
+delay(1000); //延時1 秒鐘
+}

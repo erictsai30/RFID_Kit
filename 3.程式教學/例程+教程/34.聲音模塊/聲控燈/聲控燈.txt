@@ -1,0 +1,18 @@
+//聲音模塊也可以看作是一個聲音開關，有聲音時 D0腳 輸出1，無聲音輸出0
+//所以在這裡我們可以當成按鍵來處理。非常簡單。
+int sensorpin =  2;   //聲音模塊的D0腳，也是數字輸出腳，有聲音輸出1，無聲音輸出0
+int ledPin = 13;      // select the pin for the LED
+void setup() {
+ pinMode(ledPin, OUTPUT);    
+ pinMode(sensorpin, INPUT); 
+  Serial.begin(9600); 
+}
+void loop() {   
+  if(digitalRead(sensorpin)==HIGH)//當有聲音時，板載LED被點亮5秒鐘，之後熄滅
+  {
+     digitalWrite(ledPin,HIGH);
+     delay(5000);
+     digitalWrite(ledPin,LOW);
+  }   
+ delay(10);
+}

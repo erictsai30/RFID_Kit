@@ -1,0 +1,20 @@
+void setup() 
+{ 
+  pinMode(8,OUTPUT);//設置數字8引腳為轀出模式 
+} 
+void loop() 
+{ 
+int i;//定義發量i 
+while(1) 
+{ 
+  i=analogRead(5);//讀夬模擬5口電壓值 
+  if(i>512)//如果大於512（2.5V） 
+  { 
+    digitalWrite(8,LOW);//點亮led燈 
+  } 
+  else//否則 
+  { 
+    digitalWrite(8,HIGH);//熄滅led燈 
+  } 
+ } 
+} 

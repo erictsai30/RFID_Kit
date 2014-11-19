@@ -1,0 +1,19 @@
+int val;//定義變量val
+int ledpin=13;//定義數字接口13
+void setup()
+{
+  Serial.begin(9600);//設置波特率為9600，這裡要跟軟件設置相一致。當接入特定設備（如：藍牙）時，我們也要跟其他設備的波特率達到一致。
+  pinMode(ledpin,OUTPUT);//設置數字13 口為輸出接口，Arduino 上我們用到的I/O 口都要進行類似這樣的定義。
+}
+void loop()
+{
+  val=Serial.read();//讀取PC 機發送給Arduino 的指令或字符，並將該指令或字符賦給val
+  if(val=='R')//判斷接收到的指令或字符是否是「R」。
+  {  //如果接收到的是「R」字符
+    digitalWrite(ledpin,HIGH);//點亮數字13 口LED。
+    delay(500);
+    digitalWrite(ledpin,LOW);//熄滅數字13 口LED
+    delay(500);
+    Serial.println("Hello World!");//顯示「Hello World！」字符串
+  }
+}

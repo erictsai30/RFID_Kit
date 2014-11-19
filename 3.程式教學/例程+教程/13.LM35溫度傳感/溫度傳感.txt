@@ -1,0 +1,16 @@
+int potPin = 0; //定義模擬接口0 連接LM35 溫度傳感器
+void setup()
+{
+Serial.begin(9600);//設置波特率
+}
+void loop()
+{
+int val;//定義變量
+int dat;//定義變量
+val=analogRead(0);// 讀取傳感器的模擬值並賦值給val
+dat=(125*val)>>8;//溫度計算公式
+Serial.print("Tep:");//原樣輸出顯示Tep 字符串代表溫度
+Serial.print(dat);//輸出顯示dat 的值
+Serial.println("C");//原樣輸出顯示C 字符串
+delay(500);//延時0.5 秒
+}

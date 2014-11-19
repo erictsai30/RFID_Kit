@@ -1,0 +1,22 @@
+int sensorPin = A0;    // 設置模擬口A0為信號輸入端
+int ledPin = 13;      // 設置LED控制引腳為13
+int sensorValue = 0;  // 存放模擬信號量的變量
+
+void setup() {
+  pinMode(ledPin, OUTPUT);  //設置LED對應的引腳為輸出
+  Serial.begin(9600);     //初始化串口波特率9600
+}
+
+void loop() {
+  sensorValue = analogRead(sensorPin);
+  
+  if(sensorValue>700)//當讀取的值大於700時，點亮LED
+  {
+   digitalWrite(ledPin, HIGH);
+  }else
+  {
+   digitalWrite(ledPin, LOW);
+  }
+  Serial.println(sensorValue);
+  delay(100);
+}
